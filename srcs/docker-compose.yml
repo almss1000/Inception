@@ -1,0 +1,47 @@
+services:
+
+  wordpress:
+    build:
+      context: requirements/wordpress
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - ali:/var/www/wordpress
+    depends_on:
+      - mariadb
+    networks:
+      - Inception
+  nginx:
+    build: requirements/nginx
+    ports:
+      - "443:443"
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+    volumes:
+      - ali:/var/www/wordpress
+    networks:
+      - Inception
+    restart: always
+  mariadb:
+    build: requirements/mariadb
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    networks:
+      - Inception
+
+volumes:
+  ali:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/alimousa/Inception/hey'
+networks:
+  Inception:
