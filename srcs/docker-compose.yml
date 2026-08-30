@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ali:/var/www/wordpress
+      - data_wordpress:/var/www/wordpress
     depends_on:
       - mariadb
     networks:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - ali:/var/www/wordpress
+      - data_wordpress:/var/www/wordpress
     networks:
       - Inception
     restart: always
@@ -37,11 +37,17 @@ services:
       - Inception
 
 volumes:
-  ali:
+  data_wordpress:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/alimousa/Inception/hey'
+      device: '/home/aalimous/data/wordpress'
+  data_mariadb:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/aalimous/data/mariadb'
 networks:
   Inception:
