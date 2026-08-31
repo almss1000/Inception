@@ -5,7 +5,7 @@ all: up
 up:
 	sudo mkdir -p $(data_path)/wordpress
 	sudo mkdir -p $(data_path)/mariadb
-	$(COMPOSE) up  --build
+	$(COMPOSE) up -d --build
 
 down:
 	$(COMPOSE) down
@@ -28,6 +28,12 @@ logs:
 
 ps:
 	$(COMPOSE) ps
+
+images:
+	$(COMPOSE) images
+
+volumes:
+	$(COMPOSE) volumes
 
 clean:
 	$(COMPOSE) down

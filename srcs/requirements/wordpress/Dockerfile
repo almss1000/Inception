@@ -10,12 +10,17 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
 RUN cd /var/www && tar -xzf wordpress-6.0-fr_FR.tar.gz && rm wordpress-6.0-fr_FR.tar.gz
-COPY tools/script.sh script.sh
-RUN chmod +x script.sh
 
 # COPY conf/wp-config.php /var/www/wordpress/wp-config.php
 
 RUN sed -i 's|^listen = .*|listen = 9000|' /etc/php/8.2/fpm/pool.d/www.conf
 
 
-ENTRYPOINT ["./script.sh"]
+# COPY tools/script.sh script.sh
+# RUN chmod +x script.sh
+# ENTRYPOINT ["./script.sh"]
+
+COPY tools/script.sh /usr/local/bin/script.sh
+RUN chmod +x /usr/local/bin/script.sh
+
+ENTRYPOINT ["/usr/local/bin/script.sh"]

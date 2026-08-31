@@ -35,6 +35,8 @@ services:
       - "3306:3306"
     env_file:
       - .env
+    volumes:
+      - data_mariadb:/var/lib/mysql
     networks:
       - Inception
     restart: on-failure
