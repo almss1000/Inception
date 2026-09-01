@@ -39,7 +39,7 @@ clean:
 	$(COMPOSE) down
 
 fclean:
-	$(COMPOSE) down --volumes --rmi all
+	$(COMPOSE) down --volumes --rmi all && sudo rm -rf /home/aalimous
 
 re:
 	$(MAKE) fclean

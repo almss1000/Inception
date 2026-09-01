@@ -10,6 +10,7 @@ cd "$WP_PATH"
 sleep 10
 
 if [ ! -f "$WP_PATH/wp-config.php" ]; then
+    wp core download --allow-root --force
 
     echo "Creating wp-config.php..."
 
@@ -29,9 +30,9 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
         --path="$WP_PATH" \
         --url="aalimous.42.fr" \
         --title="Mon Site WordPress" \
-        --admin_user="admin" \
-        --admin_password="admin" \
-        --admin_email="contact@exemple.com"
+        --admin_user="$WP_ADMIN_USER" \
+        --admin_password="$WP_ADMIN_PASSWORD" \
+        --admin_email="$WP_ADMIN_EMAIL"
 
 fi
 

@@ -4,8 +4,7 @@ services:
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
+    
     env_file:
       - .env
     volumes:
@@ -31,8 +30,7 @@ services:
     restart: on-failure
   mariadb:
     build: requirements/mariadb
-    ports:
-      - "3306:3306"
+  
     env_file:
       - .env
     volumes:
