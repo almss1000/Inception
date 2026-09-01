@@ -4,6 +4,7 @@ services:
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
+    image: wordpress:aalimous
     
     env_file:
       - .env
@@ -19,6 +20,7 @@ services:
     build: requirements/nginx
     ports:
       - "443:443"
+    image: nginx:aalimous
     env_file:
       - .env
     depends_on:
@@ -30,6 +32,7 @@ services:
     restart: on-failure
   mariadb:
     build: requirements/mariadb
+    image: mariadb:aalimous
   
     env_file:
       - .env

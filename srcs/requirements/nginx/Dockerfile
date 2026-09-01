@@ -8,4 +8,7 @@ RUN openssl req -x509 -nodes -out a.out -keyout a.key -subj "/C=FR/ST=IDF/L=Pari
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
+COPY tools/script.sh /usr/local/bin/script.sh
+RUN chmod +x /usr/local/bin/script.sh
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
